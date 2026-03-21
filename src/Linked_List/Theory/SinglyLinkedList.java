@@ -1,5 +1,7 @@
 package Linked_List.Theory;
 
+import java.util.Objects;
+
 public class SinglyLinkedList<E> {
     private static class Node<E>{
         private E element;
@@ -57,11 +59,34 @@ public class SinglyLinkedList<E> {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o==null) return false;
+        if (getClass()!=o.getClass()) return false;
+        SinglyLinkedList other =(SinglyLinkedList) o;
+        if (size!=other.size)return false;
+        Node walkA=head;
+        Node walkB=other.head;
+        while(walkA!=null){
+            if (!walkA.getElement().equals(walkB.getElement())) return false;
+            walkA=walkA.getNext();
+            walkB=walkB.getNext();
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(head, tail, size);
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList<Integer> linkedList= new SinglyLinkedList<Integer>();
         linkedList.addFirst(3);
         linkedList.addFirst(4);
         linkedList.addFirst(5);
         linkedList.traverseList();
+        SinglyLinkedList<Integer> linkedList2= new SinglyLinkedList<Integer>();
+        System.out.println(linkedList.equals(linkedList2));
     }
 }
