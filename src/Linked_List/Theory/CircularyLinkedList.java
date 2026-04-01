@@ -53,6 +53,10 @@ public class CircularyLinkedList<E> {
         size--;
         return head.getElement();
     }
+    public E getFirst(){
+        if (isEmpty()){return null;}
+        return tail.getNext().getElement();
+    }
     public void traverseList() {
         int i=0;
         if (isEmpty()) {
@@ -65,7 +69,7 @@ public class CircularyLinkedList<E> {
             System.out.print("|" + current.getElement() + "|");
             current = current.getNext();
             i++;
-        } while (size+5 > i);
+        } while (size > i);
 
         System.out.println();
 
